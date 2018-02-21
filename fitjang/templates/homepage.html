@@ -2,13 +2,14 @@
 
 <html>
 <body>
-<form action="/adddata/show" method="post">
+<form action="show/" method="post">
     <title> Fit Jang </title>
     <center><h1> Welcome to Fit Jang! </h1>
       Date <input type="date" name="Date"><br><br>
       Description <input type="string" name="Description" maxlength="100"><br><br>
 
       <input type="submit" value="Submit">
-
+      {% csrf_token %}
+</form>
 </body>
 </html>
