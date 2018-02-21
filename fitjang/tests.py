@@ -16,6 +16,14 @@ class HomePageTest(TestCase):
         #self.assertTrue(response.content.startswith(b'<html>'))
         #self.assertTrue(response.content.endswith(b'</html>'))
 
+    def test_can_save_a_POST_request(self):
+
+        self.cilent.post('/', data={'activity_text': 'Mac donold' })
+
+        self.assertEqual(Activity.objects.count(), 1)
+        new_item = Item.objects.first()
+        self.assertEqual(new_item.text, 'A new list item')
+
     def test_add_data_returns_correct_html(self):
             request = HttpRequest()
             response = add_data(request)
