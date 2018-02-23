@@ -8,9 +8,14 @@ from fitjang.models import Activity
 # Create your tests here.
 
 class HomePageTest(TestCase):
-    # def test_user_home_template(self):
-    #     response = self.client.get('/')
-    #     self.assertTemplateUsed(response, 'homepage.html')
+    def test_user_home_template(self):
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'homepage.html')
+
+    def test_can_save_a_POST_request(self):
+        response = self.client.post('/', data={'item_activity': 'A new list item'})
+        self.assertIn('A new list item', response.content.decode())
+        self.assertTemplateUsed(response, 'homepage.html')
 
     def test_root_hotme_page(self):
         found = resolve('/')
@@ -22,10 +27,17 @@ class HomePageTest(TestCase):
         html = response.content.decode('utf8')
         self.assertTrue(html.startswith('<html>'))
         self.assertIn('<title>Fit Jang</title>', html)
-        #self.assertTrue(html.strip().endswith('</html>'))
+        # self.assertTrue(html.strip().endswith('</html>'))
 
         self.assertTemplateUsed(response, 'homepage.html')
 
+    # def test_home_page_can_save_a_POST_request(self):
+    #     request = HttpRequest()
+    #     request.method = 'POST'
+    #     request.POST['item_text'] = 'A new list item'
+    #
+    #     response = home_page(request)
+    #     self.assertIn('A new list item', response.content.decode())
     # def test_can_save_a_POST_request(self):
     #
     #     self.client.get('/', data={'activity_text': 'Mac donold' })

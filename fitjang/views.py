@@ -1,7 +1,10 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 def homepage(request):
-    return render(request, 'homepage.html')
+    return render(request, 'homepage.html', {
+        'new_item_text': request.POST.get('item_activity'),
+    })
 #     act = Activity()
 #     act.activity_text = request.POST.get('act_text', 'Mac donold')
 #     act.save()

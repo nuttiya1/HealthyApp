@@ -2,9 +2,13 @@
     <title>Fit Jang</title>
   <body>
     <h1>Fit Jang</h1>
-    <input id="id_new_activity" placeholder="Enter a Fit Jang activity" />
-    <table id="id_list_table">
-    </table>
+    <form method="POST">
+    <input name="item_activity" id="id_new_activity" placeholder="Enter a Fit Jang activity" />
+    {% csrf_token %}
+    </form>
+  <table id="id_list_table">
+    <tr><td>1: {{ new_item_text }}</td></tr>
+  </table>
   </body>
 </html>
 <!-- add data -->
