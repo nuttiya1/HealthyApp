@@ -1,10 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from fitjang.models import Activity
 
 def homepage(request):
-    return render(request, 'homepage.html', {
-        'new_item_text': request.POST.get('item_activity'),
-    })
+    if request.method == 'POST':
+        new_activity_text = request.POST['item_activity']
+        Activity.objects.create(activity_text=new_activity_text)
+        return redirect('/')
+
+    return render(request, 'homepage.html')
+
 #     act = Activity()
 #     act.activity_text = request.POST.get('act_text', 'Mac donold')
 #     act.save()

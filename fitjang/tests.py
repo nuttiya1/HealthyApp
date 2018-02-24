@@ -12,10 +12,20 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'homepage.html')
 
+    def test_only_saves_items_when_necessary(self):
+        self.client.get('/')
+        self.assertEqual(Activity.objects.count(), 0)
+
     def test_can_save_a_POST_request(self):
         response = self.client.post('/', data={'item_activity': 'A new list item'})
-        self.assertIn('A new list item', response.content.decode())
-        self.assertTemplateUsed(response, 'homepage.html')
+        self.assertEqual(Activity.objects.count(), 1)
+        new_item = Activity.objects.first()
+        self.assertEqual(new_item.activity_text, 'A new list item')
+
+    def test_redirects_after_POST(self):
+        response = self.client.post('/', data={'item_activity': 'A new list item'})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['location'], '/')
 
     def test_root_hotme_page(self):
         found = resolve('/')
