@@ -36,8 +36,9 @@ class NewVisitorTest(unittest.TestCase):
         # She types "Buy peacock feathers" into a text box (Edith's hobby
         # is tying fly-fishing lures)
         inputbox.send_keys('Run')
-
-        inputbox.send_keys(Keys.ENTER)
+        time.sleep(2)
+        self.browser.find_element_by_id("id_sub").click()
+        # inputbox.send_keys(Keys.ENTER)
         time.sleep(2)
         self.check_for_row_in_list_table('1: Run')
 
@@ -46,7 +47,9 @@ class NewVisitorTest(unittest.TestCase):
         # methodical)
         inputbox = self.browser.find_element_by_id('id_new_activity')
         inputbox.send_keys('Wetgth')
-        inputbox.send_keys(Keys.ENTER)
+        time.sleep(2)
+        self.browser.find_element_by_id("id_sub").click()
+        # inputbox.send_keys(Keys.ENTER)
         time.sleep(2)
 
         # The page updates again, and now shows both items on her list

@@ -1,10 +1,13 @@
 from django.db import models
 
 class Activity(models.Model):
-   activity_text = models.TextField(default='')
+    activity_text = models.TextField(default='')
 
-#class List(models.Model):
-#    pass
+class Weight(models.Model):
+    weight_data = models.PositiveIntegerField(default=0)
+
+class Time(models.Model):
+    amount_of_time = models.PositiveIntegerField(default=0)
 
 #class Data(models.Model):
 #    text = models.TextField(default='')
