@@ -19,7 +19,7 @@ class HomePageTest(TestCase):
         # self.assertEqual(Time.objects.count(), 0)
 
     def test_can_save_a_POST_request(self):
-        response = self.client.post('/', data={'item_activity': 'A new list item', 'val_weightt': 0weight, 'val_time': 0})
+        response = self.client.post('/', data={'item_activity': 'A new list item', 'val_weight': 0, 'val_time': 0})
         self.assertEqual(Activity.objects.count(), 1)
         new_item = Activity.objects.first()
         self.assertEqual(new_item.activity_text, 'A new list item')
@@ -33,7 +33,7 @@ class HomePageTest(TestCase):
         self.assertEqual(val_time.amount_of_time, 0)
 
     def test_redirects_after_POST(self):
-        response = self.client.post('/', data={'item_activity': 'A new list item', 'val_weightt': 0weight, 'val_time': 0})
+        response = self.client.post('/', data={'item_activity': 'A new list item', 'val_weight': 0, 'val_time': 0})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['location'], '/')
 
@@ -95,8 +95,7 @@ class TimeModelTest(TestCase):
         All_time = Time.objects.all()
         self.assertEqual(All_time.count(), 1)
 
-        self.assertEqual(All_time[0].amount_of_time, 120)weightweightweightweightweight
-weightweighthtweightweightweight
+        self.assertEqual(All_time[0].amount_of_time, 120)
     # def test_home_page_can_save_a_POST_request(self):
     #     request = HttpRequest()
     #     request.method = 'POST'
