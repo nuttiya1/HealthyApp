@@ -3,14 +3,26 @@
   <body>
     <h1>Fit Jang</h1>
     <form method="POST">
-    <input name="item_activity" id="id_new_activity" placeholder="Enter a Fit Jang activity" />
+    Description <input name="item_activity" id="id_new_activity" placeholder="Enter a Fit Jang activity" />
     <br>
+    Weight <input name="val_weight" id="id_weight" />
+    <br>
+    Time <input name="val_time" id="id_time" />
+    <br>
+    <!-- Date <input type="date" name="date_activity" id="id_date" value="{{ show_date }}">
+    <br> -->
     <input id="id_sub" type="submit" value="Submit">
     {% csrf_token %}
     </form>
   <table id="id_list_table">
     {% for item in items %}
        <tr><td>{{ forloop.counter }}: {{ item.activity_text }}</td></tr>
+    {% endfor %}
+    {% for valW in ValWeight %}
+       <tr><td>{{valW.weight_data}} กก.</td></tr>
+    {% endfor %}
+    {% for valT in ValTime %}
+       <tr><td>{{valT.amount_of_time}} นาที</td></tr>
     {% endfor %}
   </table>
   </body>
