@@ -31,6 +31,24 @@ class HomePageTest(TestCase):
 
         self.assertTemplateUsed(response, 'homepage.html')
 
+class ItemModelTest(TestCase):
+
+    def test_saving_and_retrieving_items(self):
+        first_item = Activity()
+        first_item.activity_text = 'The first (ever) list item'
+        first_item.save()
+
+        second_item = Activity()
+        second_item.activity_text = 'Item the second'
+        second_item.save()
+
+        saved_items = Activity.objects.all()
+        self.assertEqual(saved_items.count(), 2)
+
+        first_saved_item = saved_items[0]
+        second_saved_item = saved_items[1]
+        self.assertEqual(first_saved_item.activity_text, 'The first (ever) list item')
+        self.assertEqual(second_saved_item.activity_text, 'Item the second')
     # def test_home_page_can_save_a_POST_request(self):
     #     request = HttpRequest()
     #     request.method = 'POST'
