@@ -7,8 +7,8 @@ def homepage(request):
         new_activity_text = request.POST['item_activity']
         Activity.objects.create(activity_text=new_activity_text)
         return redirect('/')
-
-    return render(request, 'homepage.html')
+    items = Activity.objects.all()
+    return render(request, 'homepage.html', {'items': items})
 
 #     act = Activity()
 #     act.activity_text = request.POST.get('act_text', 'Mac donold')
