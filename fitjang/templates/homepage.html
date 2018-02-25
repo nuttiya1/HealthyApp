@@ -15,14 +15,16 @@
     {% csrf_token %}
     </form>
   <table id="id_list_table">
+       <tr>
     {% for item in items %}
-       <tr><td>{{ forloop.counter }}: {{ item.activity_text }}</td></tr>
+         <td>{{ forloop.counter }}: {{ item.activity_text }}</td>
     {% endfor %}
     {% for valW in ValWeight %}
-       <tr><td>{{valW.weight_data}} กก.</td></tr>
+         <td>{{valW.weight_data}} กก.</td>
     {% endfor %}
     {% for valT in ValTime %}
-       <tr><td>{{valT.amount_of_time}} นาที</td></tr>
+         <td>{{valT.amount_of_time}} นาที</td>
+       </tr>
     {% endfor %}
   </table>
   </body>
