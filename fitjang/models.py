@@ -3,15 +3,17 @@ from django.utils import timezone
 
 class Activity(models.Model):
     activity_text = models.TextField(default='')
-
-class Weight(models.Model):
     weight_data = models.PositiveIntegerField(default=0)
-
-class Time(models.Model):
     amount_of_time = models.PositiveIntegerField(default=0)
 
-class Date(models.Model):
-    date = models.DateTimeField(auto_now=True)
+# class Weight(models.Model):
+#     weight_data = models.PositiveIntegerField(default=0)
+#
+# class Time(models.Model):
+#     amount_of_time = models.PositiveIntegerField(default=0)
+#
+# class Date(models.Model):
+#     date = models.DateTimeField(auto_now=True)
 
 
 #class Data(models.Model):

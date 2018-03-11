@@ -1,28 +1,24 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from fitjang.models import Activity,Weight,Time
+from fitjang.models import Activity
 
 def homepage(request):
 
     if request.method == 'POST':
 
-        new_activity_text = request.POST['item_activity']
-        new_val_weight = request.POST['val_weight']
-        new_val_time = request.POST['val_time']
-        # record_date = request.POST['date_activity']
+        # new_activity_text = request.POST['item_activity']
+        # new_val_weight = request.POST['val_weight']
+        # new_val_time = request.POST['val_time']
+        # # record_date = request.POST['date_activity']
 
-        Activity.objects.create(activity_text=new_activity_text)
-        Weight.objects.create(weight_data=new_val_weight)
-        Time.objects.create(amount_of_time=new_val_time)
+        Activity.objects.create(activity_text=request.POST['item_activity'],weight_data=int(request.POST['val_weight']),amount_of_time=int(request.POST['val_time']))
         # Date.objects.create(date_activity=record_date)
 
         return redirect('/')
 
     items = Activity.objects.all()
-    ValWeight = Weight.objects.all()
-    ValTime = Time.objects.all()
 
-    return render(request, 'homepage.html', {'items': items, 'ValWeight': ValWeight, 'ValTime': ValTime})
+    return render(request, 'homepage.html', {'items': items})
 
 #     act = Activity()
 #     act.activity_text = request.POST.get('act_text', 'Mac donold')
@@ -43,7 +39,5 @@ def homepage(request):
 #    Data.objects.create(text=request.POST['data_text'], list=new_list)
 ########
 
-# def show(request):
-#      act = Activity()
-#      context = {'Description'}
-#      return render(request, 'show.html', context)
+def exercise(request):
+     return render(request, 'exercise.html')

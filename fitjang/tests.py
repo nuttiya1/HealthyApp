@@ -96,17 +96,3 @@ class TimeModelTest(TestCase):
         self.assertEqual(All_time.count(), 1)
 
         self.assertEqual(All_time[0].amount_of_time, 120)
-    # def test_home_page_can_save_a_POST_request(self):
-    #     request = HttpRequest()
-    #     request.method = 'POST'
-    #     request.POST['item_text'] = 'A new list item'
-    #
-    #     response = home_page(request)
-    #     self.assertIn('A new list item', response.content.decode())
-    # def test_can_save_a_POST_request(self):
-    #
-    #     self.client.get('/', data={'activity_text': 'Mac donold' })
-    #     self.assertEqual(Activity.objects.count(), 1)
-    #
-    #     new_item = Activity.objects.first()
-    #     self.assertEqual(new_item.activity_text, 'Mac donold')

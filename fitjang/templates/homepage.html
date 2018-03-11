@@ -1,7 +1,16 @@
 <html>
-    <title>Fit Jang</title>
+  <title>Fit Jang</title>
+  <head>
+  <style>
+  table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+  }
+  </style>
+  </head>
   <body>
     <h1>Fit Jang</h1>
+    <h3><a href="/exercise">วิธีการออกกำลังกาย</a></h3>
     <form method="POST">
     Description <input name="item_activity" id="id_new_activity" placeholder="Enter a Fit Jang activity" />
     <br>
@@ -14,33 +23,19 @@
     <input id="id_sub" type="submit" value="Submit">
     {% csrf_token %}
     </form>
-  <table id="id_list_table">
+    <table id="id_list_table" style="width:100%">
        <tr>
-    {% for item in items %}
-         <td>{{ forloop.counter }}: {{ item.activity_text }}</td>
-    {% endfor %}
-    {% for valW in ValWeight %}
-         <td>{{valW.weight_data}} กก.</td>
-    {% endfor %}
-    {% for valT in ValTime %}
-         <td>{{valT.amount_of_time}} นาที</td>
+          <th>Description</th>
+          <th>Weight(กก.)</th>
+          <th>Time(นาที)</th>
        </tr>
-    {% endfor %}
-  </table>
+       {% for item in items %}
+       <tr>
+         <td>{{ forloop.counter }}: {{ item.activity_text }}</td>
+         <td>{{item.weight_data}}</td>
+         <td>{{item.amount_of_time}}</td>
+       </tr>
+      {% endfor %}
+    </table>
   </body>
 </html>
-<!-- add data -->
-<!--
-<html>
-<body>
-<form action="show/" method="post">
-    <title> Fit Jang </title>
-    <center><h1> Welcome to Fit Jang!</h1>
-      Date <input type="date" name="Date"><br><br>
-      Description <input type="text" name="Description" value="run"><br><br>
-
-      <input type="submit" value="Submit">
-      {% csrf_token %}
-</form>
-</body>
-</html> -->

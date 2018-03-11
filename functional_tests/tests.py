@@ -15,10 +15,6 @@ class NewVisitorTest(LiveServerTestCase):
         table = self.browser.find_element_by_id('id_list_table')
         rows_text = table.find_elements_by_tag_name('tr')
         self.assertIn(row_text, [row.text for row in rows_text])
-        # row_weigth = table.find_elements_by_tag_name('tr')
-        # self.assertIn(row_weigth, [row.text for row in row_weigth])
-        # row_time = table.find_elements_by_tag_name('tr')
-        # self.assertIn(row_time, [row.text for row in row_time])
 
     def test_can_start_a_list_and_retrieve_it_later(self):
         # Edith has heard about a cool new online health app. She goes
