@@ -5,27 +5,26 @@ from fitjang.models import Activity
 def homepage(request):
 
     if request.method == 'POST':
-
-        # new_activity_text = request.POST['item_activity']
-        # new_val_weight = request.POST['val_weight']
-        # new_val_time = request.POST['val_time']
-        # # record_date = request.POST['date_activity']
-
-        Activity.objects.create(activity_text=request.POST['item_activity'],weight_data=int(request.POST['val_weight']),amount_of_time=int(request.POST['val_time']))
-        # Date.objects.create(date_activity=record_date)
-
+        Activity.objects.create(
+        activity_text=request.POST['item_activity'],
+        weight_data=int(request.POST['val_weight']),
+        amount_of_time=int(request.POST['val_time']),
+        mets=returnMETS(request.POST['item_activity'])
+            )
         return redirect('/')
 
     items = Activity.objects.all()
 
     return render(request, 'homepage.html', {'items': items})
 
-#     act = Activity()
+def returnMETS(items):
+    if items == "run":
+        return 7.0
 #     act.activity_text = request.POST.get('act_text', 'Mac donold')
 #     act.save()
 #
 # #    if request.method == 'POST':
-# #        Activity.objects.create(text=request.POST.get['activity_text'])
+# #        Activity.objects.create(text=request.POST.get['activity_text'])request.POST['item_activity']
 #
 #     return render(request, 'homepage.html', {'new_activity': act.activity_text})
 

@@ -12,11 +12,17 @@
     <h1>Fit Jang</h1>
     <h3><a href="/exercise">วิธีการออกกำลังกาย</a></h3>
     <form method="POST">
-    Description <input name="item_activity" id="id_new_activity" placeholder="Enter a Fit Jang activity" />
+    <!-- Description <input name="item_activity" id="id_new_activity" placeholder="Activity" /> -->
+    <select name="item_activity" id="id_new_activity">
+
+       <option value="run">Run</option>
+
+
+    </select>
     <br>
-    Weight <input name="val_weight" id="id_weight" />
+    Weight <input name="val_weight" id="id_weight" placeholder="K.g." />
     <br>
-    Time <input name="val_time" id="id_time" />
+    Time <input name="val_time" id="id_time" placeholder="Hours" />
     <br>
     <!-- Date <input type="date" name="date_activity" id="id_date" value="{{ show_date }}">
     <br> -->
@@ -28,12 +34,14 @@
           <th>Description</th>
           <th>Weight(กก.)</th>
           <th>Time(นาที)</th>
+          <th>Calories</th>
        </tr>
        {% for item in items %}
        <tr>
          <td>{{ forloop.counter }}: {{ item.activity_text }}</td>
          <td>{{item.weight_data}}</td>
          <td>{{item.amount_of_time}}</td>
+         <td>{{item.mets}}</td>
        </tr>
       {% endfor %}
     </table>
