@@ -6,8 +6,10 @@ class Activity(models.Model):
     weight_data = models.PositiveIntegerField(default=0)
     amount_of_time = models.PositiveIntegerField(default=0)
     calories = models.FloatField(default=0)
-    def __str__(self):
-        return self.activity_text
+
+class Mets(models.Model):
+    name = models.TextField(default='')
+    value = models.FloatField()
 
 # class Weight(models.Model):
 #     weight_data = models.PositiveIntegerField(default=0)

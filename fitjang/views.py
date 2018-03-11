@@ -1,15 +1,17 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from fitjang.models import Activity
+from fitjang.models import Activity, Mets
 
 def homepage(request):
 
     if request.method == 'POST':
+        print(request.POST['item_activity'])
+        Mets_ = Mets.objects.get(name = request.POST['item_activity'])
         Activity.objects.create(
-        activity_text=request.POST['item_activity'],
-        weight_data=int(request.POST['val_weight']),
-        amount_of_time=int(request.POST['val_time']),
-        calories=returnMETS(request.POST['item_activity'])
+        activity_text = request.POST['item_activity'],
+        weight_data = int(request.POST['val_weight']),
+        amount_of_time = int(request.POST['val_time']),
+        calories = Mets_.value*int(request.POST['val_weight'])*int(request.POST['val_time'])/60
             )
         return redirect('/')
 
@@ -17,10 +19,6 @@ def homepage(request):
 
     return render(request, 'homepage.html', {'items': items})
 
-
-def returnMETS(items):
-    if items == "run":
-        return 7
 #     act.activity_text = request.POST.get('act_text', 'Mac donold')
 #     act.save()
 #
