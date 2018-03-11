@@ -16,13 +16,14 @@
     <select name="item_activity" id="id_new_activity">
 
        <option value="run">Run</option>
-
+       <option value="jog">Jogging</option>
 
     </select>
+
     <br>
     Weight <input name="val_weight" id="id_weight" placeholder="K.g." />
     <br>
-    Time <input name="val_time" id="id_time" placeholder="Hours" />
+    Time <input name="val_time" id="id_time" placeholder="Minutes" />
     <br>
     <!-- Date <input type="date" name="date_activity" id="id_date" value="{{ show_date }}">
     <br> -->
@@ -41,7 +42,7 @@
          <td>{{ forloop.counter }}: {{ item.activity_text }}</td>
          <td>{{item.weight_data}}</td>
          <td>{{item.amount_of_time}}</td>
-         <td>{{item.mets}}</td>
+         <td>{{item.calories}}</td>
        </tr>
       {% endfor %}
     </table>

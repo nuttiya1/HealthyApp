@@ -5,7 +5,7 @@ class Activity(models.Model):
     activity_text = models.TextField(default='')
     weight_data = models.PositiveIntegerField(default=0)
     amount_of_time = models.PositiveIntegerField(default=0)
-    mets = models.PositiveIntegerField(default=0)
+    calories = models.FloatField(default=0)
     def __str__(self):
         return self.activity_text
 

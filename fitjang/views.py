@@ -9,7 +9,7 @@ def homepage(request):
         activity_text=request.POST['item_activity'],
         weight_data=int(request.POST['val_weight']),
         amount_of_time=int(request.POST['val_time']),
-        mets=returnMETS(request.POST['item_activity'])
+        calories=returnMETS(request.POST['item_activity'])
             )
         return redirect('/')
 
@@ -17,9 +17,10 @@ def homepage(request):
 
     return render(request, 'homepage.html', {'items': items})
 
+
 def returnMETS(items):
     if items == "run":
-        return 7.0
+        return 7
 #     act.activity_text = request.POST.get('act_text', 'Mac donold')
 #     act.save()
 #
