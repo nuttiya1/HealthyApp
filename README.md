@@ -7,17 +7,20 @@ The data of healthyapp collection is an exercise method, the weight of the user,
 ## Summary
 
 ● Features
+
     - Collection user exercise
     - How to exercise
     - How to eat each meal
     
 ● Model
+
     - Activity
     - Weight
     - Time
     - Calories
 
 ● Tests
+
     - Check browser title
     - Add input
     - Calculator calories
