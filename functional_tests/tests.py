@@ -27,15 +27,20 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn('Fit Jang', header_text)
 
         # She is invited to enter an activity straight away
-        inputbox = self.browser.find_element_by_id('id_new_activity')
-        self.assertEqual(
-            inputbox.get_attribute('placeholder'),
-            'Enter a Fit Jang activity'
-        )
+        # inputbox = self.browser.find_element_by_id('id_new_activity')
+        # self.assertEqual(
+        #     inputbox.get_attribute('placeholder'),
+        #     'Enter a Fit Jang activity'
+        # )
 
         # She types "Run" into a text box (Edith's hobby)
         #
-        inputbox.send_keys('Run')
+        # inputbox.send_keys('Run')
+        el = self.browser.find_element_by_id('id_of_select')
+        for option in el.find_elements_by_tag_name('option'):
+           if option.text == 'Run':
+              option.click() # select() in earlier versions of webdriver
+              break
         time.sleep(2)
         inputWeight = self.browser.find_element_by_id('id_weight')
         inputWeight.send_keys(60)
@@ -46,7 +51,6 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser.find_element_by_id("id_sub").click()
         time.sleep(2)
 
-        self.check_for_row_in_list_table('1: Run 60 กก. 120 นาที')
 
         # There is still a text box inviting her to add another item. She
         # enters "Use peacock feathers to make a fly" (Edith is very
@@ -64,7 +68,7 @@ class NewVisitorTest(LiveServerTestCase):
         # time.sleep(2)
 
         # The page updates again, and now shows both items on her list
-        self.check_for_row_in_list_table('1: Run 60 กก. 120 นาที')
+        # self.check_for_row_in_list_table('1: Run 60 กก. 120 นาที')
         # self.check_for_row_in_list_table('2: Wetgth')
 
         self.fail('Finish the test!')

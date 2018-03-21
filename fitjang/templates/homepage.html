@@ -11,12 +11,13 @@
   <body>
     <h1>Fit Jang</h1>
     <h3><a href="/exercise">วิธีการออกกำลังกาย</a></h3>
+    <h3><a href="/Food">วิธีการกิน</a></h3>
     <form method="POST">
     <!-- Description <input name="item_activity" id="id_new_activity" placeholder="Activity" /> -->
-    <select name="item_activity" id="id_new_activity">
+    <select name="item_activity" id="id_of_select">
 
-       <option value="run">Run</option>
-       <option value="jog">Jogging</option>
+       <option value="Run">Run</option>
+       <option value="Jogging">Jogging</option>
 
     </select>
 
@@ -36,6 +37,7 @@
           <th>Weight(กก.)</th>
           <th>Time(นาที)</th>
           <th>Calories</th>
+          <th>Delete</th>
        </tr>
        {% for item in items %}
        <tr>
@@ -43,8 +45,16 @@
          <td>{{item.weight_data}}</td>
          <td>{{item.amount_of_time}}</td>
          <td>{{item.calories}}</td>
+         <!-- <td><a href="/" onclick="return confirm("Are you sure?");">Delete</a></td> -->
+         <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
        </tr>
       {% endfor %}
     </table>
+    <script>
+    function deleteRow(r) {
+       var i = r.parentNode.parentNode.rowIndex;
+       document.getElementById("id_list_table").deleteRow(i);
+    }
+   </script>
   </body>
 </html>

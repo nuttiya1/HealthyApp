@@ -5,7 +5,6 @@ from fitjang.models import Activity, Mets
 def homepage(request):
 
     if request.method == 'POST':
-        print(request.POST['item_activity'])
         Mets_ = Mets.objects.get(name = request.POST['item_activity'])
         Activity.objects.create(
         activity_text = request.POST['item_activity'],
@@ -19,23 +18,20 @@ def homepage(request):
 
     return render(request, 'homepage.html', {'items': items})
 
-#     act.activity_text = request.POST.get('act_text', 'Mac donold')
-#     act.save()
-#
-# #    if request.method == 'POST':
-# #        Activity.objects.create(text=request.POST.get['activity_text'])request.POST['item_activity']
-#
-#     return render(request, 'homepage.html', {'new_activity': act.activity_text})
-
-#######
-#def new_data(request):
-#    new_list = List.objects.create()
-#    Text.objects.create(text=request.POST['data_text'], list=new_list)
-
-#def add_data(request, data_id):
-#    new_list = List.objects.get(id=data_id)
-#    Data.objects.create(text=request.POST['data_text'], list=new_list)
-########
-
 def exercise(request):
      return render(request, 'exercise.html')
+
+def chest(request):
+     return render(request, 'chest.html')
+
+def arms(request):
+     return render(request, 'arms.html')
+
+def legs(request):
+     return render(request, 'legs.html')
+
+def shoulder(request):
+     return render(request, 'shoulder.html')
+
+def back(request):
+     return render(request, 'back.html')
