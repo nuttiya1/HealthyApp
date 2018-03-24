@@ -3,8 +3,7 @@ from django.test import TestCase
 from django.http import HttpRequest
 from django.urls import resolve
 from fitjang.views import homepage
-from fitjang.models import Activity,Weight,Time
-
+from fitjang.models import Activity, Mets
 # Create your tests here.
 
 class HomePageTest(TestCase):
@@ -19,29 +18,28 @@ class HomePageTest(TestCase):
         # self.assertEqual(Time.objects.count(), 0)
 
     def test_can_save_a_POST_request(self):
-        response = self.client.post('/', data={'item_activity': 'A new list item', 'val_weight': 0, 'val_time': 0})
+        # Add table in test database
+        Mets.objects.create(name="Run", value=7.0)
+
+        response = self.client.post('/', data={'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
+
         self.assertEqual(Activity.objects.count(), 1)
         new_item = Activity.objects.first()
-        self.assertEqual(new_item.activity_text, 'A new list item')
+        self.assertEqual(new_item.activity_text, 'Run')
 
-        self.assertEqual(Weight.objects.count(), 1)
-        val_weigth = Weight.objects.first()
-        self.assertEqual(val_weigth.weight_data, 0)
+    def test_can_delete_a_POST_request(self):
+        # Add table at the very first begining
+        # Due the different database
+        Mets.objects.create(name="Run", value=7.0)
 
-        self.assertEqual(Time.objects.count(), 1)
-        val_time = Time.objects.first()
-        self.assertEqual(val_time.amount_of_time, 0)
+        response = self.client.post('/', data={'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
 
-    def test_redirects_after_POST(self):
-        response = self.client.post('/', data={'item_activity': 'A new list item', 'val_weight': 0, 'val_time': 0})
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/')
+        self.assertIsNotNone(Activity.objects.first())
+        Activity.objects.first().delete()
+        self.assertIsNone(Activity.objects.first())
 
     def test_displays_all_list_items(self):
         Activity.objects.create(activity_text='itemey 1')
-        Weight.objects.create(weight_data=0)
-        Time.objects.create(amount_of_time=0)
-        # Activity.objects.create(activity_text='itemey 2')
 
         response = self.client.get('/')
 
@@ -63,36 +61,3 @@ class HomePageTest(TestCase):
         # self.assertTrue(html.strip().endswith('</html>'))
 
         self.assertTemplateUsed(response, 'homepage.html')
-
-class ActivityModelTest(TestCase):
-
-    def test_saving_and_retrieving_items(self):
-        first_item = Activity(activity_text='The first (ever) list item')
-        first_item.save()
-
-        All_items = Activity.objects.all()
-        self.assertEqual(All_items.count(), 1)
-
-        self.assertEqual(All_items[0].activity_text, 'The first (ever) list item')
-
-class WeigthModelTest(TestCase):
-
-    def test_saving_and_retrieving_items(self):
-        first_weight = Weight(weight_data=60)
-        first_weight.save()
-
-        All_weight = Weight.objects.all()
-        self.assertEqual(All_weight.count(), 1)
-
-        self.assertEqual(All_weight[0].weight_data, 60)
-
-class TimeModelTest(TestCase):
-
-    def test_saving_and_retrieving_items(self):
-        first_time = Time(amount_of_time=120)
-        first_time.save()
-
-        All_time = Time.objects.all()
-        self.assertEqual(All_time.count(), 1)
-
-        self.assertEqual(All_time[0].amount_of_time, 120)
