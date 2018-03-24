@@ -34,8 +34,9 @@ class HomePageTest(TestCase):
 
         response = self.client.post('/', data={'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
 
-        self.assertIsNotNone(Activity.objects.first())
-        Activity.objects.first().delete()
+        new_item = Activity.objects.first()
+        self.assertIsNotNone(new_item)
+        new_item.delete()
         self.assertIsNone(Activity.objects.first())
 
     def test_displays_all_list_items(self):

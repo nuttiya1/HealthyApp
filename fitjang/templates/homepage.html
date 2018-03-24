@@ -12,12 +12,13 @@
     <h1>Fit Jang</h1>
     <h3><a href="/exercise">วิธีการออกกำลังกาย</a></h3>
     <h3><a href="/food">วิธีการกิน</a></h3>
-    <form method="POST">
+    <form method="POST" name="input_box">
     <!-- Description <input name="item_activity" id="id_new_activity" placeholder="Activity" /> -->
     <select name="item_activity" id="id_of_select">
 
-       <option value="Run">Run</option>
-       <option value="Jogging">Jogging</option>
+       <option value="Run">Run</option> <!--Met 7.0-->
+       <option value="Jogging">Jogging</option> <!--Met 4.0-->
+       <option value="Bicycling">Bicycling</option> <!--Met 7.5-->
 
     </select>
 
@@ -45,16 +46,13 @@
          <td>{{item.weight_data}}</td>
          <td>{{item.amount_of_time}}</td>
          <td>{{item.calories}}</td>
-         <!-- <td><a href="/" onclick="return confirm("Are you sure?");">Delete</a></td> -->
-         <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+            <form action="/" method="POST" name="delete_table">
+            {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{item.id}}" />
+                <td><input type="submit" value="Delete"></td>
+            </form>
        </tr>
       {% endfor %}
     </table>
-    <script>
-    function deleteRow(r) {
-       var i = r.parentNode.parentNode.rowIndex;
-       document.getElementById("id_list_table").deleteRow(i);
-    }
-   </script>
   </body>
 </html>
