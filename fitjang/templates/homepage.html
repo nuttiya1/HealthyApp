@@ -12,13 +12,12 @@
     <h1>Fit Jang</h1>
     <h3><a href="/exercise">วิธีการออกกำลังกาย</a></h3>
     <h3><a href="/food">วิธีการกิน</a></h3>
-    <form method="POST" name="input_box">
+    <form method="POST" action="addActivity">
     <!-- Description <input name="item_activity" id="id_new_activity" placeholder="Activity" /> -->
     <select name="item_activity" id="id_of_select">
 
-       <option value="Run">Run</option> <!--Met 7.0-->
-       <option value="Jogging">Jogging</option> <!--Met 4.0-->
-       <option value="Bicycling">Bicycling</option> <!--Met 7.5-->
+       <option value="Run">Run</option>
+       <option value="Jogging">Jogging</option>
 
     </select>
 
@@ -46,11 +45,10 @@
          <td>{{item.weight_data}}</td>
          <td>{{item.amount_of_time}}</td>
          <td>{{item.calories}}</td>
-            <form action="/" method="POST" name="delete_table">
-            {% csrf_token %}
-                <input type="hidden" name="item_id" value="{{item.id}}" />
-                <td><input type="submit" value="Delete"></td>
-            </form>
+         <form action="deleteActivity" method="POST">
+        {% csrf_token %}
+           <td><button type="submit" name="del_id" value={{item.id}}>Delete</button></td>
+         </form>
        </tr>
       {% endfor %}
     </table>

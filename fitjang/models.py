@@ -11,6 +11,8 @@ class Mets(models.Model):
     name = models.TextField(default='')
     value = models.FloatField()
 
+
+
 # class Weight(models.Model):
 #     weight_data = models.PositiveIntegerField(default=0)
 #

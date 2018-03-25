@@ -4,7 +4,8 @@ from fitjang import views
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
-    path('delete', views.delete_row_table, name='delete_row_table'),
+    path('addActivity', views.add_activity, name='add_activity'),
+    path('deleteActivity', views.delete_row_table, name='delete_row_table'),
     path('exercise/', views.exercise, name='exercise'),
     path('exercise/chest', views.chest, name='chest'),
     path('exercise/arms', views.arms, name='arms'),

@@ -21,10 +21,12 @@ class HomePageTest(TestCase):
         # Add table in test database
         Mets.objects.create(name="Run", value=7.0)
 
-        response = self.client.post('/', data={'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
+        response = self.client.post('addActivity', data={
+        'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
 
         self.assertEqual(Activity.objects.count(), 1)
         new_item = Activity.objects.first()
+
         self.assertEqual(new_item.activity_text, 'Run')
 
     def test_can_delete_a_POST_request(self):
@@ -32,8 +34,9 @@ class HomePageTest(TestCase):
         # Due the different database
         Mets.objects.create(name="Run", value=7.0)
 
-        response = self.client.post('/', data={'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
-
+        response = self.client.post('addActivity', data={
+        'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
+        
         new_item = Activity.objects.first()
         self.assertIsNotNone(new_item)
         new_item.delete()
