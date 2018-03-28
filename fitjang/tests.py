@@ -21,7 +21,7 @@ class HomePageTest(TestCase):
         # Add table in test database
         Mets.objects.create(name="Run", value=7.0)
 
-        response = self.client.post('addActivity', data={
+        response = self.client.post('/addActivity', data={
         'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
 
         self.assertEqual(Activity.objects.count(), 1)
@@ -29,18 +29,20 @@ class HomePageTest(TestCase):
 
         self.assertEqual(new_item.activity_text, 'Run')
 
-    def test_can_delete_a_POST_request(self):
+    def test_can_delete_with_a_POST_request(self):
         # Add table at the very first begining
         # Due the different database
         Mets.objects.create(name="Run", value=7.0)
 
-        response = self.client.post('addActivity', data={
+        response = self.client.post('/addActivity', data={
         'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
-        
+
         new_item = Activity.objects.first()
         self.assertIsNotNone(new_item)
-        new_item.delete()
-        self.assertIsNone(Activity.objects.first())
+
+        response = self.client.post('/deleteActivity', data={'del_id': new_item.id})
+        print(new_item.activity_text)
+        #self.assertIsNone(new_item)
 
     def test_displays_all_list_items(self):
         Activity.objects.create(activity_text='itemey 1')
