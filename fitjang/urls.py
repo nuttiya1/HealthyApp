@@ -12,5 +12,6 @@ urlpatterns = [
     path('exercise/shoulder', views.shoulder, name='shoulder'),
     path('exercise/legs', views.legs, name='legs'),
     path('exercise/back', views.back, name='back'),
+    path('food', views.food, name='food'),
 
 ]

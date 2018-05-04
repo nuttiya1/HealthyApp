@@ -38,3 +38,6 @@ def shoulder(request):
 
 def back(request):
      return render(request, 'back.html')
+
+def food(request):
+    return render(request, 'food.html')

@@ -11,8 +11,9 @@
   <body>
     <h1>Fit Jang</h1>
     <h3><a href="/exercise">วิธีการออกกำลังกาย</a></h3>
-    <h3><a href="/food">วิธีการกิน</a></h3>
-    <form method="POST" action="addActivity">
+    <h3><a href="/food">แนะนำอาหาร</a></h3>
+
+    <form method="POST" action="/addActivity">
     <!-- Description <input name="item_activity" id="id_new_activity" placeholder="Activity" /> -->
     <select name="item_activity" id="id_of_select">
 
@@ -37,7 +38,7 @@
           <th>Weight(กก.)</th>
           <th>Time(นาที)</th>
           <th>Calories</th>
-          <!-- <th>Delete</th> -->
+          <th>Delete</th>
        </tr>
        {% for item in items %}
        <tr>
@@ -45,9 +46,9 @@
          <td>{{item.weight_data}}</td>
          <td>{{item.amount_of_time}}</td>
          <td>{{item.calories}}</td>
-         <form action="deleteActivity" method="POST">
+         <form action="/deleteActivity" method="POST">
         {% csrf_token %}
-           <td><button type="submit" name="del_id" value={{item.id}}>Delete</button></td>
+           <td><button type="submit" name="del_id" value={{item.id}} id={{ forloop.counter }}>Delete</button></td>
          </form>
        </tr>
       {% endfor %}
