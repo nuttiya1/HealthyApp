@@ -30,7 +30,7 @@ class HomePageTest(TestCase):
 
         self.assertEqual(new_item.activity_text, 'Run')
 
-    def test_can_delete_a_POST_request(self):
+    def test_can_delete_with_a_POST_request(self):
         # Add table at the very first begining
         # Due the different database
         Mets.objects.create(name="Run", value=7.0)

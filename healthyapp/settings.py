@@ -27,10 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 
-
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 # Application definition
 
 INSTALLED_APPS = [
+    'import_export',
     'fitjang',
     'django.contrib.admin',
     'django.contrib.auth',

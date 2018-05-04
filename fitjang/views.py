@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from fitjang.models import Activity, Mets
-
+ 
 def homepage(request):
     items = Activity.objects.all()
     return render(request, 'homepage.html', {'items': items})
