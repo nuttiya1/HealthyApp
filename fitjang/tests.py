@@ -1,5 +1,6 @@
 from django.template.loader import render_to_string
 from django.test import TestCase
+from django.test import Client
 from django.http import HttpRequest
 from django.urls import resolve
 from fitjang.views import homepage
@@ -21,7 +22,7 @@ class HomePageTest(TestCase):
         # Add table in test database
         Mets.objects.create(name="Run", value=7.0)
 
-        response = self.client.post('addActivity', data={
+        response = self.client.post('/addActivity', data={
         'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
 
         self.assertEqual(Activity.objects.count(), 1)
@@ -33,24 +34,12 @@ class HomePageTest(TestCase):
         # Add table at the very first begining
         # Due the different database
         Mets.objects.create(name="Run", value=7.0)
-
-        response = self.client.post('addActivity', data={
+        response = self.client.post('/addActivity', data={
         'item_activity': 'Run', 'val_weight': 100, 'val_time':120})
+
+        response = self.client.post('/deleteActivity', data={'del_id' : Activity.objects.first().id})
         
-        new_item = Activity.objects.first()
-        self.assertIsNotNone(new_item)
-        new_item.delete()
         self.assertIsNone(Activity.objects.first())
-
-    def test_displays_all_list_items(self):
-        Activity.objects.create(activity_text='itemey 1')
-
-        response = self.client.get('/')
-
-        self.assertIn('itemey 1', response.content.decode())
-        #self.assertIn(0, response.content.decode())
-        #self.assertIn(0, response.content.decode())
-        # self.assertIn('itemey 2', response.content.decode())
 
     def test_root_hotme_page(self):
         found = resolve('/')
