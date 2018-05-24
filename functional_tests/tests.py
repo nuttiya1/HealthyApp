@@ -28,55 +28,55 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('Fit Jang', header_text)
         time.sleep(2)
 
-        # She decide to look up to these available link
-        # She saw 'วิธีวิธีการออกกำลังกาย' and decide to click it
-        self.browser.find_element_by_link_text('วิธีการออกกำลังกาย').click()
-        time.sleep(2)
+        # # She decide to look up to these available link
+        # # She saw 'วิธีวิธีการออกกำลังกาย' and decide to click it
+        # self.browser.find_element_by_link_text('วิธีการออกกำลังกาย').click()
+        # time.sleep(2)
 
-        # She saw 'ท่าออกกำลังกายส่วนอก' and decide to click it
-        self.browser.find_element_by_link_text('ท่าออกกำลังกายส่วนอก').click()
-        time.sleep(2)
-        # and went back to exercise sections
-        self.browser.find_element_by_id('back_home_exercise').click()
-        time.sleep(2)
+        # # She saw 'ท่าออกกำลังกายส่วนอก' and decide to click it
+        # self.browser.find_element_by_link_text('ท่าออกกำลังกายส่วนอก').click()
+        # time.sleep(2)
+        # # and went back to exercise sections
+        # self.browser.find_element_by_id('back_home_exercise').click()
+        # time.sleep(2)
 
-        # She saw 'ท่าออกกำลังกายส่วนหลัง' and decide to click it
-        self.browser.find_element_by_link_text('ท่าออกกำลังกายส่วนหลัง').click()
-        time.sleep(2)
-        # and went back to exercise sections
-        self.browser.find_element_by_id('back_home_exercise').click()
-        time.sleep(2)
+        # # She saw 'ท่าออกกำลังกายส่วนหลัง' and decide to click it
+        # self.browser.find_element_by_link_text('ท่าออกกำลังกายส่วนหลัง').click()
+        # time.sleep(2)
+        # # and went back to exercise sections
+        # self.browser.find_element_by_id('back_home_exercise').click()
+        # time.sleep(2)
 
-        # She saw 'ท่าออกกำลังกายส่วนแขน' and decide to click it
-        self.browser.find_element_by_link_text('ท่าออกกำลังกายส่วนแขน').click()
-        time.sleep(2)
-        # and went back to exercise sections
-        self.browser.find_element_by_id('back_home_exercise').click()
-        time.sleep(2)
+        # # She saw 'ท่าออกกำลังกายส่วนแขน' and decide to click it
+        # self.browser.find_element_by_link_text('ท่าออกกำลังกายส่วนแขน').click()
+        # time.sleep(2)
+        # # and went back to exercise sections
+        # self.browser.find_element_by_id('back_home_exercise').click()
+        # time.sleep(2)
 
-        # She saw 'ท่าออกกำลังกายส่วนไหล่' and decide to click it
-        self.browser.find_element_by_link_text('ท่าออกกำลังกายส่วนไหล่').click()
-        time.sleep(2)
-        # and went back to exercise sections
-        self.browser.find_element_by_id('back_home_exercise').click()
-        time.sleep(2)
+        # # She saw 'ท่าออกกำลังกายส่วนไหล่' and decide to click it
+        # self.browser.find_element_by_link_text('ท่าออกกำลังกายส่วนไหล่').click()
+        # time.sleep(2)
+        # # and went back to exercise sections
+        # self.browser.find_element_by_id('back_home_exercise').click()
+        # time.sleep(2)
 
-        # She saw 'ท่าออกกำลังกายส่วนขา' and decide to click it
-        self.browser.find_element_by_link_text('ท่าออกกำลังกายส่วนขา').click()
-        time.sleep(2)
-        # and went back to exercise sections
-        self.browser.find_element_by_id('back_home_exercise').click()
-        time.sleep(2)
-        # she go back to homepage
-        self.browser.find_element_by_id('back_home').click()
-        time.sleep(2)
+        # # She saw 'ท่าออกกำลังกายส่วนขา' and decide to click it
+        # self.browser.find_element_by_link_text('ท่าออกกำลังกายส่วนขา').click()
+        # time.sleep(2)
+        # # and went back to exercise sections
+        # self.browser.find_element_by_id('back_home_exercise').click()
+        # time.sleep(2)
+        # # she go back to homepage
+        # self.browser.find_element_by_id('back_home').click()
+        # time.sleep(2)
 
-        # She saw 'แนะนำอาหาร' and decide to click it
-        self.browser.find_element_by_link_text('แนะนำอาหาร').click()
-        time.sleep(2)
-        # she went back to homepage
-        self.browser.find_element_by_id('back_home').click()
-        time.sleep(2)
+        # # She saw 'แนะนำอาหาร' and decide to click it
+        # self.browser.find_element_by_link_text('แนะนำอาหาร').click()
+        # time.sleep(2)
+        # # she went back to homepage
+        # self.browser.find_element_by_id('back_home').click()
+        # time.sleep(2)
 
         # Now she felt more excite about this app
         # she has no hesitate to explore more feature of this amazing app
@@ -107,6 +107,9 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.find_element_by_id("id_sub").click()
         self.browser.get('http://localhost:8000')
         time.sleep(3)
+
+        # Check if the table has been showed
+        self.check_for_row_in_list_table('1: Jogging 60 120 540.0 Delete')
 
         # After she click sumbit, she check data in table
         # She has been recall that this is not collect data
